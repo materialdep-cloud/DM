@@ -217,9 +217,9 @@
                             <svg class="w-3.5 h-3.5 mr-1 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            保存期限
+                            規格說明
                         </div>
-                        <p id="modalShelfLife" class="text-gray-800 text-sm font-semibold">建議 5-7 天內食用</p>
+                        <p id="modalShelfLife" class="text-gray-800 text-[13px] font-semibold">如欲得知販售重量，請詳談</p>
                     </div>
                 </div>
 
@@ -258,17 +258,17 @@
     </div>
 
     <script>
-        // 食材完整數據庫 (從 DM.docx 完全提煉，已增加 'image' 欄位。預設為 ""，您填入圖片網址或檔案路徑即可自動更換圖片！)
+        // 食材完整數據庫：規格文字均已統一變更為「如欲得知販售重量，請詳談」！
         const products = [
             // --- 菇類 (16種) ---
             {
                 id: 1,
                 name: "香菇",
-                image: "images/1.jpg", // 👈 範例：可放入 "images/shiitake.jpg" 或網路圖片網址 "https://..."
+                image: "image/1.jpg",
                 category: "mushroom",
                 emoji: "🍄",
                 color: "from-amber-600 to-amber-800",
-                spec: "約 200g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃，不可受潮",
                 shelfLife: "5 ~ 7 天",
                 desc: "香氣濃郁，肉質厚實。含有豐富的香菇多醣體、維生素D，是廚房中萬能的美味基底。",
@@ -277,11 +277,11 @@
             {
                 id: 2,
                 name: "杏鮑菇",
-                image: "images/2.jpg",
+                image: "image/2.jpg",
                 category: "mushroom",
                 emoji: "🍄",
                 color: "from-yellow-600 to-amber-700",
-                spec: "約 300g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃，直立存放佳",
                 shelfLife: "7 ~ 10 天",
                 desc: "口感極佳、帶有淡淡杏仁香氣，質地緊實有彈性。常被稱為「蔬食界的牛排」。",
@@ -290,11 +290,11 @@
             {
                 id: 3,
                 name: "木耳",
-                image: "images/3.jpg",
+                image: "image/3.jpg",
                 category: "mushroom",
                 emoji: "🪵",
                 color: "from-zinc-700 to-zinc-900",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃ 密封",
                 shelfLife: "5 ~ 7 天",
                 desc: "富含膳食纖維及植物性膠原蛋白。口感脆嫩清爽，是高纖健康飲食的代表性食材。",
@@ -303,11 +303,11 @@
             {
                 id: 4,
                 name: "銀耳 (白木耳)",
-                image: "images/4.jpg",
+                image: "image/4.jpg",
                 category: "mushroom",
                 emoji: "🤍",
                 color: "from-slate-300 to-slate-400",
-                spec: "約 120g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，建議盡快食用",
                 shelfLife: "3 ~ 5 天",
                 desc: "素有「平民燕窩」的美譽。富含多醣體，膠質滿滿，適合女性養顏美容，口感滑順。",
@@ -316,11 +316,11 @@
             {
                 id: 5,
                 name: "金針菇",
-                image: "",
+                image: "image/5.jpg",
                 category: "mushroom",
                 emoji: "🥢",
                 color: "from-amber-100 to-amber-300",
-                spec: "約 200g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏密封，避免擠壓",
                 shelfLife: "5 ~ 7 天",
                 desc: "細長白嫩，脆口多汁。含有豐富的氨基酸與多種維生素，是火鍋與燒烤不可或缺的良伴。",
@@ -329,11 +329,11 @@
             {
                 id: 6,
                 name: "金滑菇",
-                image: "",
+                image: "image/6.jpg",
                 category: "mushroom",
                 emoji: "🍄",
                 color: "from-amber-400 to-amber-600",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "色澤呈現金黃色，口感比傳統金針菇更加滑嫩鮮美，富含豐富活性多醣，營養價值極高。",
@@ -342,11 +342,11 @@
             {
                 id: 7,
                 name: "雪白菇",
-                image: "",
+                image: "image/7.jpg",
                 category: "mushroom",
                 emoji: "⚪",
                 color: "from-slate-100 to-slate-300",
-                spec: "約 100g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，免洗即可烹調",
                 shelfLife: "7 ~ 10 天",
                 desc: "質地細緻，帶有淡淡的果仁香氣，且完全沒有一般菇類的草腥味，極受小朋友歡迎。",
@@ -355,11 +355,11 @@
             {
                 id: 8,
                 name: "鴻喜菇",
-                image: "",
+                image: "image/8.jpg",
                 category: "mushroom",
                 emoji: "🤎",
                 color: "from-amber-700 to-amber-900",
-                spec: "約 100g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，拆封後請一次食用完畢",
                 shelfLife: "7 ~ 10 天",
                 desc: "質地極為脆嫩，味道甘甜無苦味。煮熟後滑溜順口，適合各式煮、炒、湯品。",
@@ -368,11 +368,11 @@
             {
                 id: 9,
                 name: "秀珍菇",
-                image: "",
+                image: "image/9.jpg",
                 category: "mushroom",
                 emoji: "🍄",
                 color: "from-gray-400 to-gray-600",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "3 ~ 5 天",
                 desc: "菇體呈扇形，肉質細嫩，味道極其鮮美。富含蛋白質與必需氨基酸，是家常熱炒好搭檔。",
@@ -381,24 +381,24 @@
             {
                 id: 10,
                 name: "黑美人菇 (黑蠔菇)",
-                image: "",
+                image: "image/10.jpg",
                 category: "mushroom",
                 emoji: "🖤",
                 color: "from-neutral-700 to-neutral-950",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "菇傘呈現高貴的黑灰色。肉質厚實彈牙，口感神似鮑魚，味道極鮮，含有豐富的微量元素。",
-                recipes: ["醬燒黑美人菇：大蒜爆香，加入蠔油與糖慢火收汁。", "黑美人菇排骨湯：慢燉使湯頭金甜、菇體飽含湯汁。"]
+                recipes: ["醬燒黑美人菇：大蒜爆香，加入蠔油與糖慢火收汁。", "黑美人菇排骨湯：慢燉使湯頭清甜、菇體飽含湯汁。"]
             },
             {
                 id: 11,
                 name: "白精靈菇",
-                image: "",
+                image: "image/11.jpg",
                 category: "mushroom",
                 emoji: "🥢",
                 color: "from-slate-200 to-slate-400",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，避免潮濕",
                 shelfLife: "7 ~ 10 天",
                 desc: "雪白修長，口感比金針菇更加紮實且富有彈性。烹煮後不縮水，脆度十足。",
@@ -407,11 +407,11 @@
             {
                 id: 12,
                 name: "洋菇",
-                image: "",
+                image: "image/12.jpg",
                 category: "mushroom",
                 emoji: "⚪",
                 color: "from-neutral-100 to-neutral-300",
-                spec: "約 200g/盒",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，切勿用塑料袋密閉防發黑",
                 shelfLife: "3 ~ 5 天",
                 desc: "西方料理的靈魂食材。圓潤小巧，香氣獨特，切片煎炒能釋放極致的「鮮味(Umami)」。",
@@ -420,24 +420,24 @@
             {
                 id: 13,
                 name: "珊瑚菇",
-                image: "",
+                image: "image/13.jpg",
                 category: "mushroom",
                 emoji: "💛",
                 color: "from-yellow-400 to-amber-500",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，極為嬌嫩需防壓",
                 shelfLife: "2 ~ 4 天",
-                desc: "因外觀如黃色珊瑚而得名。帶有淡淡的草菇香與玉米清香，富含鋅元素，十分珍貴。",
-                recipes: ["清炒珊瑚菇：簡單搭配大蒜與少許鹽，保留最純粹香氣。", "珊瑚菇蛋花湯：湯頭金黃璀璨，味道溫潤。"]
+                desc: "因外觀如黃色珊瑚而得名. 。帶有淡淡的草菇香與玉米清香，富含鋅元素，十分珍貴。",
+                recipes: ["清炒珊瑚菇：簡單搭配大蒜與少許鹽，保留最純粹香氣。", "珊瑚菇蛋花湯：湯頭金黃璀璨，味道溫潤.。"]
             },
             {
                 id: 14,
                 name: "舞菇",
-                image: "",
+                image: "image/14.jpg",
                 category: "mushroom",
                 emoji: "🪶",
                 color: "from-stone-600 to-stone-800",
-                spec: "約 100g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "日本譽為「神仙之菇」（Maitake）。層疊如羽毛，香氣極其濃郁，能幫助維持身體免疫力。",
@@ -446,11 +446,11 @@
             {
                 id: 15,
                 name: "鮑魚菇",
-                image: "",
+                image: "image/15.jpg",
                 category: "mushroom",
                 emoji: "🐚",
                 color: "from-stone-400 to-stone-600",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "肉厚肥嫩，質地細緻。味道酷似鮑魚，烹調後極易吸收湯汁，飽足感十足。",
@@ -459,11 +459,11 @@
             {
                 id: 16,
                 name: "柳松菇",
-                image: "",
+                image: "image/16.jpg",
                 category: "mushroom",
                 emoji: "🌾",
                 color: "from-amber-800 to-yellow-900",
-                spec: "約 150g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "菇柄爽脆、菇傘滑嫩。擁有一種獨特的野生菇類香氣，非常耐煮，適合各類燉肉料理。",
@@ -474,11 +474,11 @@
             {
                 id: 17,
                 name: "韓小菇 (韓國松茸菇)",
-                image: "",
+                image: "image/17.jpg",
                 category: "vegetable",
                 emoji: "🇰🇷",
                 color: "from-yellow-500 to-amber-600",
-                spec: "約 200g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏密封",
                 shelfLife: "5 ~ 7 天",
                 desc: "韓國引進的優質品種，菇體挺拔，肉質帶有淡淡的松茸香氣，烹調不易出水，口感絕佳。",
@@ -487,11 +487,11 @@
             {
                 id: 18,
                 name: "青蔥",
-                image: "",
+                image: "image/18.jpg",
                 category: "vegetable",
                 emoji: "🌱",
                 color: "from-green-600 to-emerald-700",
-                spec: "約 150g/把",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "用紙巾包裹後冷藏，或切蔥花冷凍",
                 shelfLife: "7 ~ 14 天",
                 desc: "餐桌上不可或缺的辛香料。蔥白甜糯、蔥綠辛香，能瞬間提升整盤菜餚的風味層次。",
@@ -500,11 +500,11 @@
             {
                 id: 19,
                 name: "雨來菇 (地皮菜)",
-                image: "",
+                image: "image/19.jpg",
                 category: "vegetable",
                 emoji: "🌧️",
                 color: "from-teal-800 to-emerald-950",
-                spec: "約 120g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏保存，烹調前稍微清洗",
                 shelfLife: "3 ~ 5 天",
                 desc: "又稱「情人的眼淚」。雨後才會長出的陸生藍綠藻，富含多種維生素及鐵質，口感軟Q細嫩。",
@@ -513,11 +513,11 @@
             {
                 id: 20,
                 name: "去皮洋蔥",
-                image: "",
+                image: "image/20.jpg",
                 category: "vegetable",
                 emoji: "🧅",
                 color: "from-amber-200 to-amber-400",
-                spec: "約 2-3 顆裝",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏保存 (已去皮)",
                 shelfLife: "5 ~ 7 天",
                 desc: "貼心去皮處理。富含槲皮素與膳食纖維，燉煮後釋放驚人的天然甘甜，是西湯與咖哩的底蘊。",
@@ -526,24 +526,24 @@
             {
                 id: 21,
                 name: "小黃瓜",
-                image: "",
+                image: "image/21.jpg",
                 category: "vegetable",
                 emoji: "🥒",
                 color: "from-green-600 to-green-800",
-                spec: "約 3-4 支/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，避免溫度過低凍傷",
                 shelfLife: "5 ~ 7 天",
-                desc: "清脆爽口、含水量極高。具有清熱消暑作用，富含維生素C，是夏日涼拌與輕食的最佳主角。",
+                desc: "清脆爽口、含水量極高。具有清熱消暑作用，富含維生素C，是夏日涼拌與輕食最佳主角。",
                 recipes: ["涼拌拍黃瓜：用刀面拍裂黃瓜，加入蒜泥、醋與香油拌勻。", "小黃瓜炒肉片：家常快炒，清爽解膩。"]
             },
             {
                 id: 22,
                 name: "櫛瓜 (綠/黃)",
-                image: "",
+                image: "image/22.jpg",
                 category: "vegetable",
                 emoji: "🥒",
                 color: "from-emerald-600 to-yellow-500",
-                spec: "2 支裝",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏，用紙巾包覆吸附濕氣",
                 shelfLife: "5 ~ 7 天",
                 desc: "法式料理寵兒。低卡、低GI且富含鉀，肉質軟嫩，煎烤後會散發出迷人的溫潤甜味。",
@@ -552,11 +552,11 @@
             {
                 id: 23,
                 name: "水果彩椒",
-                image: "",
+                image: "image/23.jpg",
                 category: "vegetable",
                 emoji: "🫑",
                 color: "from-red-500 to-yellow-500",
-                spec: "約 250g/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 5~7℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "色彩絢麗、肉質厚實。水分多且甜度高，完全沒有普通青椒的辛辣味，可當作水果直接生食。",
@@ -565,11 +565,11 @@
             {
                 id: 24,
                 name: "玉米筍",
-                image: "",
+                image: "image/24.jpg",
                 category: "vegetable",
                 emoji: "🌽",
                 color: "from-yellow-300 to-yellow-500",
-                spec: "約 150g/盒",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 2~5℃",
                 shelfLife: "5 ~ 7 天",
                 desc: "爽脆清甜、整根皆可食用。含有豐富的膳食纖維與玉米黃素，無論是火鍋、燒烤還是熱炒都完美。",
@@ -578,11 +578,11 @@
             {
                 id: 25,
                 name: "娃娃菜",
-                image: "",
+                image: "image/25.jpg",
                 category: "vegetable",
                 emoji: "🥬",
                 color: "from-emerald-300 to-yellow-100",
-                spec: "3 珠裝/包",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏保存",
                 shelfLife: "7 ~ 10 天",
                 desc: "大白菜的精華幼嫩版。口感甘甜、纖維極其細緻，極易吸收湯汁，烹調後入口即化。",
@@ -593,11 +593,11 @@
             {
                 id: 26,
                 name: "小豆苗",
-                image: "",
+                image: "image/26.jpg",
                 category: "sprout",
                 emoji: "🌱",
                 color: "from-lime-500 to-green-600",
-                spec: "約 150g/盒",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "冷藏 4℃，直立擺放",
                 shelfLife: "3 ~ 5 天",
                 desc: "豌豆的幼苗。質地極為鮮嫩，清脆多汁。富含胡蘿蔔素與多種維生素，非常適合輕食健康餐。",
@@ -606,11 +606,11 @@
             {
                 id: 27,
                 name: "苜蓿芽",
-                image: "",
+                image: "image/27.jpg",
                 category: "sprout",
                 emoji: "🌿",
                 color: "from-green-400 to-emerald-500",
-                spec: "約 120g/盒",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "低溫冷藏，切勿壓迫",
                 shelfLife: "3 ~ 5 天",
                 desc: "生食聖品。含有高量的蛋白質、多種維生素及活性酵素，是精力湯、手捲與沙拉的核心食材。",
@@ -619,11 +619,11 @@
             {
                 id: 28,
                 name: "三日苗 (西蘭花超幼苗)",
-                image: "",
+                image: "image/28.jpg",
                 category: "sprout",
                 emoji: "🌱",
                 color: "from-emerald-500 to-teal-600",
-                spec: "50g/盒",
+                spec: "如欲得知販售重量，請詳談",
                 storage: "嚴格冷藏 4℃",
                 shelfLife: "3 ~ 5 天",
                 desc: "發芽第三天的青花椰幼苗。含有極高濃度的「蘿蔔硫素」，是抗氧化與養生界備受矚目的明星食材。",
@@ -712,13 +712,13 @@
                         </div>
                         
                         <div class="mt-4 pt-3 border-t border-gray-50 flex items-center justify-between text-xs text-gray-400">
-                            <span class="flex items-center">
-                                <svg class="w-3.5 h-3.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            <span class="flex items-center text-[11px] text-emerald-800 font-medium bg-emerald-50/50 px-2.5 py-1 rounded-xl">
+                                <svg class="w-3.5 h-3.5 mr-1 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 ${product.spec}
                             </span>
-                            <span class="flex items-center text-green-700 font-semibold bg-green-50 px-2 py-0.5 rounded-md">
+                            <span class="flex items-center text-green-700 font-semibold bg-green-50 px-2 py-0.5 rounded-md hidden lg:inline-flex">
                                 <svg class="w-3 h-3 mr-0.5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
@@ -783,7 +783,7 @@
             document.getElementById('modalTitle').innerHTML = `${product.emoji} ${product.name}`;
             document.getElementById('modalDescription').innerText = product.desc;
             document.getElementById('modalStorage').innerText = product.storage;
-            document.getElementById('modalShelfLife').innerText = product.shelfLife;
+            document.getElementById('modalShelfLife').innerText = product.spec; // 規格說明也同步顯示詳談資訊
             
             // 設定分類標籤
             let catName = "精選菇類";
