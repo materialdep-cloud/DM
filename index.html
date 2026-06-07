@@ -70,7 +70,7 @@
                 尋找最純淨的<span class="text-green-600">自然滋味</span>
             </h2>
             <p class="text-gray-600 mt-4 text-base md:text-lg max-w-2xl mx-auto">
-                我們為您彙整了頂級菇類、鮮嫩蔬菜、精選生菜、高營養芽菜與優質加工食品。點擊商品卡片可查看詳細資訊。
+                我們為您彙整了各類頂級鮮菇、精選乾貨、鮮嫩蔬菜與優質加工食品。點擊商品卡片可查看詳細資訊。
             </p>
             
             <div class="mt-8 bg-white p-2 rounded-2xl shadow-xl shadow-green-100/40 border border-green-100 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto">
@@ -78,7 +78,7 @@
                     <svg class="absolute left-4 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
-                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="搜尋食材名稱... (例如：芝麻葉、黃金地瓜、朝天椒)" class="w-full pl-11 pr-4 py-3 bg-gray-50 focus:bg-white border-0 focus:ring-2 focus:ring-green-500 rounded-xl text-sm outline-none transition">
+                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="搜尋食材名稱... (例如：乾香菇、日本大蔥、黃金地瓜)" class="w-full pl-11 pr-4 py-3 bg-gray-50 focus:bg-white border-0 focus:ring-2 focus:ring-green-500 rounded-xl text-sm outline-none transition">
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
         <!-- 分類標籤滑動條 -->
         <div class="flex items-center justify-between mb-8 border-b border-green-100 pb-4">
             <div class="flex space-x-2 overflow-x-auto no-scrollbar py-1" id="categoryFilters">
-                <!-- JavaScript 將動態生成按鈕與商品數量 -->
+                <!-- 由 JS 動態生成，菇類後方會緊接著顯示「乾貨」 -->
             </div>
             <span class="text-xs text-gray-500 font-medium hidden lg:inline-flex items-center">
                 <svg class="w-4 h-4 mr-1 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,8 +136,8 @@
                     <h4 class="text-white font-semibold mb-4 text-sm tracking-wider uppercase">保存小常識</h4>
                     <ul class="text-sm space-y-2 text-green-200/60">
                         <li>• 菇類買回家請勿沾水，冷藏保存可放 5-7 天。</li>
+                        <li>• 乾貨類商品請放置在常溫陰涼乾燥處，防潮密封可保存更久。</li>
                         <li>• 生菜與芽菜極為嬌嫩，冷藏保存時避免擠壓，並盡速食用。</li>
-                        <li>• 真空包裝加工品開袋後需冷藏密封，並建議於 3 天內料理完畢。</li>
                     </ul>
                 </div>
             </div>
@@ -195,7 +195,7 @@
                             </svg>
                             規格說明
                         </div>
-                        <p id="modalShelfLife" class="text-gray-800 text-[13px] font-semibold">如欲得知販售重量，請詳談</p>
+                        <p id="modalShelfLife" class="text-gray-800 text-[13px] font-semibold">如欲得知販售重量及價格，請詳談</p>
                     </div>
                 </div>
 
@@ -238,11 +238,13 @@
         function getCategoryStyle(category) {
             if (category === 'mushroom' || category.includes('菇')) 
                 return { colorClasses: 'bg-amber-100 text-amber-800', grad: 'from-amber-600 to-amber-800', icon: '🍄' };
-            if (category === 'root' || category.includes('根') || category.includes('莖')) 
+            if (category === '乾貨') 
+                return { colorClasses: 'bg-stone-100 text-stone-800', grad: 'from-stone-600 to-stone-800', icon: '📦' };
+            if (category === 'root' || category.includes('根') || category.includes('生菜') === false && (category.includes('莖') || category.includes('蘿蔔'))) 
                 return { colorClasses: 'bg-orange-100 text-orange-800', grad: 'from-orange-500 to-orange-700', icon: '🥕' };
             if (category === 'melon' || category.includes('瓜') || category.includes('果') || category.includes('椒') || category.includes('番茄')) 
                 return { colorClasses: 'bg-emerald-100 text-emerald-800', grad: 'from-emerald-500 to-teal-700', icon: '🥒' };
-            if (category === 'leaf' || category.includes('葉') || category.includes('雜')) 
+            if (category === 'leaf' || category.includes('葉') || category.includes('雜') || category.includes('大蔥') || category.includes('蔥')) 
                 return { colorClasses: 'bg-green-100 text-green-800', grad: 'from-green-500 to-emerald-600', icon: '🥬' };
             if (category === 'lettuce' || category.includes('生菜')) 
                 return { colorClasses: 'bg-rose-100 text-rose-800', grad: 'from-rose-500 to-rose-700', icon: '🥗' };
@@ -254,9 +256,7 @@
         }
 
         // ===================================================================================
-        // 【資料庫】
-        // 每個品項皆已配有固定的「id」，圖片將完全鎖定對應「images/id.jpg」
-        // 刪除或在此任意排序，其他品項的 ID 都不會變動，不再需要重新命名照片！
+        // 【資料庫】100% 精準靜態 ID 資料，未來新增、修改、刪除都不會弄亂照片命名！
         // ===================================================================================
         const rawProducts = [
             // --- 菇類 (1 ~ 18) ---
@@ -279,6 +279,14 @@
             { id: 17, category: "菇類", name: "韓小菇", storage: "冷藏密封", desc: "韓國引進的優質品種，菇體挺拔，肉質帶有淡淡的松茸香氣，烹調不易出水，口感絕佳。", recipes: ["韓式烤肉配菇：在烤盤上煎烤至微焦，搭配生菜食用。"] },
             { id: 18, category: "菇類", name: "雨來菇", storage: "冷藏保存，烹調前稍微清洗", desc: "又稱「情人的眼淚」。雨後才會長出的陸生藍綠藻，富含多種維生素及鐵質，口感軟Q細嫩。", recipes: ["雨來菇炒蛋：最經典的原民風味料理，極度鮮美下飯。"] },
 
+            // --- 乾貨 (89 ~ 94) ---
+            { id: 89, category: "乾貨", name: "乾香菇(大)", storage: "常溫乾燥陰涼處保存，防潮密封", desc: "選用優質大朵香菇烘乾製成。肉質厚實彈牙，香氣極致濃郁，是中式宴席、煲湯與燉肉的頂級珍品。", recipes: ["乾貨煲湯：溫水泡發後與排骨、土雞一同慢燉，湯底鮮香。", "紅燒香菇：泡發後與冬筍、白菜大火紅燒收汁。"] },
+            { id: 90, category: "乾貨", name: "乾香菇(大中)", storage: "常溫乾燥陰涼處保存，防潮密封", desc: "大小適中，色澤亮麗。經過精心烘乾完美鎖住香氣多醣體，是家庭廚房常備的最佳調味珍饈。", recipes: ["香菇滷肉：切塊或整朵與五花肉慢火燉滷，肉香交融。"] },
+            { id: 91, category: "乾貨", name: "乾香菇(小中)", storage: "常溫乾燥陰涼處保存，防潮密封", desc: "精巧玲瓏，香氣不減。泡發速度快，肉質Q彈細緻，非常適合家常快炒與內餡調味。", recipes: ["油飯香菇：切絲後與油蔥、肉絲爆炒拌入糯米。"] },
+            { id: 92, category: "乾貨", name: "乾香菇(小鈕)", storage: "常溫乾燥陰涼處保存，防潮密封", desc: "鈕扣般精緻小巧，一口一朵剛剛好。口感脆嫩、香氣飽滿，免切直接整朵料理極為便利。", recipes: ["家常炒素什錦：不需切片，直接與黑木耳、黃瓜、紅蘿蔔同炒。"] },
+            { id: 93, category: "乾貨", name: "乾香菇絲", storage: "常溫乾燥陰涼處保存，防潮密封", desc: "貼心預先切絲處理的乾香菇。省去泡發後繁瑣的切絲工序，隨取隨用，釋放濃郁香氣更快速。", recipes: ["台式炒米粉：與油蔥、高麗菜、香菇絲快炒香噴噴。"] },
+            { id: 94, category: "乾貨", name: "乾香菇腳", storage: "常溫乾燥陰涼處保存，防潮密封", desc: "香菇傘柄部分，纖維豐富、嚼勁十足。富含香菇精華，是熬煮素食高湯與精緻素滷肉的頂級天然基底。", recipes: ["素高湯底：與黃豆芽、昆布、白蘿蔔慢火熬煮出極鮮底湯。"] },
+
             // --- 根菜/莖菜 (19 ~ 22) ---
             { id: 19, category: "根菜/莖菜", name: "有機櫻桃蘿蔔", storage: "切除葉片後冷藏保存", desc: "鮮紅小巧，水分充足。口感帶有微微的十字花科辛辣與極致的清脆。", recipes: ["糖醋漬櫻桃蘿蔔：切薄片用醋、糖、鹽醃漬半天，冰鎮後爽脆無比。"] },
             { id: 20, category: "根菜/莖菜", name: "洋蔥［去皮］", storage: "冷藏保存 (已去皮)", desc: "貼心去皮處理。富含槲皮素與膳食纖維，燉煮後釋放驚人的天然甘甜，是料理百搭食材。", recipes: ["法式洋蔥湯：慢火焦糖化洋蔥，加入高湯熬煮。"] },
@@ -298,7 +306,7 @@
             { id: 32, category: "瓜菜/果菜", name: "朝天椒", storage: "冷凍或冷藏保存", desc: "辣度強烈辛辣，椒香持久。是調味、爆香、或是喜愛香辣重口味料理者的必備良伴。", recipes: ["辣拌蒜頭醬油 : 朝天椒切圈，混入蒜末、醬油，是完美的沾醬。"] },
             { id: 33, category: "瓜菜/果菜", name: "玉米筍", storage: "冷藏保存", desc: "爽脆清甜、整根皆可食用。含有豐富的膳食纖維與玉米黃素，無論是火鍋、燒烤還是熱炒都完美。", recipes: ["清甜玉米筍湯：與貢丸或排骨一同熬煮。"] },
 
-            // --- 葉菜/雜糧 (34 ~ 42) ---
+            // --- 葉菜/雜糧 (34 ~ 42, 95) ---
             { id: 34, category: "葉菜/雜糧", name: "青蔥", storage: "用紙巾包裹後冷藏，或切蔥花冷凍", desc: "餐桌上不可或缺的辛香料。蔥白甜糯、蔥綠辛香，能瞬間提升整盤菜餚的風味層次。", recipes: ["蔥爆牛肉：大火爆炒，蔥段保持翠綠與爽脆口感。"] },
             { id: 35, category: "葉菜/雜糧", name: "青蔥［末］", storage: "冷藏或冷凍保存", desc: "貼心為您細切好的新鮮蔥末，省去繁忙廚房的備料時間，隨取隨用最方便。", recipes: ["蔥花煎蛋：直接撒入蛋液中煎熟，香氣四溢。"] },
             { id: 36, category: "葉菜/雜糧", name: "日本紫蘇", storage: "密封保鮮盒微濕冷藏", desc: "香氣強烈優雅，極具日本特色。與海鮮料理搭配能完美去腥，並帶來溫潤的香草風味。", recipes: ["日式生魚片點綴：包裹生魚片片或海膽直接食用。"] },
@@ -308,6 +316,7 @@
             { id: 40, category: "葉菜/雜糧", name: "日本紅春香地瓜", storage: "乾燥常溫存放", desc: "日本品種紅春香地瓜，具有極高甜度與細緻綿密的質地，皮薄肉滑、纖維極少。", recipes: ["慢烤蜜地瓜：低溫慢烤出豐厚糖蜜。"] },
             { id: 41, category: "葉菜/雜糧", name: "日本山藥［4L］", storage: "冷藏保存", desc: "日本進口4L頂級規格山藥，肉質雪白結實，黏液極富活性，生食爽脆、熟食鬆軟。", recipes: ["涼拌山藥細絲：切成極細絲，搭配淡口醬油與海苔絲生食。"] },
             { id: 42, category: "葉菜/雜糧", name: "帶殼玉米筍", storage: "冷藏保存", desc: "新鮮帶殼玉米筍，保留最天然的水分與甜度，連同玉米鬚一同烹調更具營養價值。", recipes: ["帶殼炭烤玉米筍：直接帶殼烘烤，剝開後沾取少許椒鹽食用。"] },
+            { id: 95, category: "葉菜/雜糧", name: "日本大蔥", storage: "冷藏保存，直立存放佳", desc: "日本優良品種大蔥。蔥白長而粗壯，質地甜嫩多汁、辛味柔和，受熱烹調後會呈現驚人的軟糯與天然香甜質感。", recipes: ["大蔥燒雞：蔥白切段與雞腿肉、醬油煎燒至微焦焦黃。", "日式烤大蔥串：與五花肉片、大蔥切段交錯串起碳烤。"] },
 
             // --- 生菜 (43 ~ 62) ---
             { id: 43, category: "生菜", name: "蘿美", storage: "冷藏 4℃", desc: "中肋厚實、葉身挺直，味道清甜爽脆。是美式沙拉與輕食的必備基底。", recipes: ["經典凱薩沙拉：搭配烤麵包丁與帕瑪森起司拋拌。"] },
@@ -323,9 +332,9 @@
             { id: 53, category: "生菜", name: "綠火焰生菜", storage: "冷藏 4℃", desc: "翠綠蓬鬆，羽裂波浪。爽脆多汁、味道清甜。能完美附著各類輕食醬汁。", recipes: ["韓式五花肉包菜：大口包裹烤肉與辛奇，清爽去油。"] },
             { id: 54, category: "生菜", name: "紅蘿蔓", storage: "冷藏 4℃", desc: "挺拔厚實的中肋，中上部帶有紫紅葉片。質地香脆，帶有微苦甜之風味。", recipes: ["香烤紅蘿蔓：切半刷上少許橄欖油微煎，淋上起司醬。"] },
             { id: 55, category: "生菜", name: "波士頓奶油生菜", storage: "冷藏 4℃", desc: "層疊包球如花苞。葉面光滑具光澤，肉質極其細緻甜糯，口感溫和如奶油般柔嫩。", recipes: ["頂級輕食冷盤：與酪梨、水煮蛋、雞胸肉拋拌。"] },
-            { id: 56, category: "生菜", name: "羽衣甘藍", storage: "冷藏保存", desc: "高營養超級食物。葉片質地硬挺耐磨，富含鐵質與抗氧化多醣體。", recipes: ["烘烤脆羽衣：拌橄欖油與海鹽，低溫烘烤至香脆。"] },
+            { id: 56, category: "生菜", name: "羽衣甘蓮", storage: "冷藏保存", desc: "高營養超級食物。葉片質地硬挺耐磨，富含鐵質與抗氧化多醣體。", recipes: ["烘烤脆羽衣：拌橄欖油與海鹽，低溫烘烤至香脆。"] },
             { id: 57, category: "生菜", name: "歐芹［平葉巴西里］", storage: "冷藏保存", desc: "義式料理必備辛香生菜。香氣清新強烈，常用於海鮮、紅肉去腥與提味。", recipes: ["義式香蒜橄欖油麵：起鍋前撒入大量剁碎的歐芹葉。"] },
-            { id: 58, category: "生菜", name: "紅包心生菜", storage: "冷藏保存", desc: "球形緊結，紅紫相間，帶有白色中肋. 口感爽脆且略帶苦味，是西式冷盤色彩點綴常客。", recipes: ["地中海油醋冷盤：切細絲，與核桃、橄欖油、紅酒醋一同拋拌。"] },
+            { id: 58, category: "生菜", name: "紅包心生菜", storage: "冷藏保存", desc: "球形緊結，紅紫相間，帶有白色中肋。口感爽脆且略帶苦味，是西式冷盤色彩點綴常客。", recipes: ["地中海油醋冷盤：切細絲，與核桃、橄欖油、紅酒醋一同拋拌。"] },
             { id: 59, category: "生菜", name: "紫高麗菜", storage: "冷藏保存", desc: "又稱紅甘藍。質地結實硬朗，帶有鮮豔的紫紅色，富含大量花青素。", recipes: ["德式酸椰菜：與醋、蘋果、香料一同慢火慢燉。"] },
             { id: 60, category: "生菜", name: "紅甜脆生菜", storage: "冷藏 4℃", desc: "新型生菜品種。具有結球生菜的驚人脆度，並擁有奶油生菜的鮮甜，葉尖帶紅彩。", recipes: ["鮮脆鴨胸沙拉：提供極致的咀嚼脆爽感。"] },
             { id: 61, category: "生菜", name: "綠甜脆生菜", storage: "冷藏 4℃", desc: "兼具清脆與高甜度，整株翠綠，含水量飽滿，完全沒有任何澀味。", recipes: ["鮮活低脂沙拉：淋上蜂蜜優格醬或胡麻醬直接食用。"] },
@@ -335,7 +344,7 @@
             { id: 63, category: "芽菜", name: "小豆苗", storage: "冷藏 4℃ 直立存放", desc: "豌豆嫩芽。鮮嫩清爽、纖維細緻，富含活性維生素與膳食纖維。", recipes: ["大蒜炒豆苗：熱油爆香蒜頭，快速大火翻炒 20 秒起鍋。"] },
             { id: 64, category: "芽菜", name: "苜蓿芽", storage: "冷藏保存，防擠壓", desc: "高活性多醣體與維生素之優選芽菜。生食能保留最完整的活性酵素。", recipes: ["健康精力湯：與奇異果、蘋果、堅果打成精力湯。"] },
             { id: 65, category: "芽菜", name: "青花椰苗［三日苗］", storage: "4℃低溫密封冷藏", desc: "發芽第三天的青花椰超幼苗。富含極高濃度的「蘿蔔硫素」，是養生與抗氧化的頂級食材。", recipes: ["抗氧生食輕沙拉：直接鋪在沙拉、三明治或溫沙拉上同食。"] },
-            { id: 66, category: "芽菜", name: "紫高麗苗", storage: "冷藏保存", desc: "紫甘藍的幼苗，帶有浪漫粉紫色的莖，含有豐富的多酚與花青素。", recipes: ["生菜沙拉配色：撒在綜合生菜沙拉上方，增添色澤。"] },
+            { id: 66, category: "芽菜", name: "紫高麗苗", storage: "冷藏保存", desc: "紫甘藍 the 幼苗，帶有浪漫粉紫色的莖，含有豐富的多酚與花青素。", recipes: ["生菜沙拉配色：撒在綜合生菜沙拉上方，增添色澤。"] },
             { id: 67, category: "芽菜", name: "葵花苗", storage: "冷藏保存", desc: "向日葵的幼芽，莖葉厚實，嚼起來帶有淡淡的葵瓜子堅果香氣，口感十分清爽。", recipes: ["香油涼拌葵花苗：川燙冰鎮後，與香油、鹽、蒜泥冷拌。"] },
             { id: 68, category: "芽菜", name: "雪豆苗", storage: "冷藏 4℃ 直立存放", desc: "極致嬌嫩的豌豆類嫩芽。口感比一般豆苗更加細膩甘糯，生食、熱炒皆宜。", recipes: ["松阪豬肉炒雪豆：與Q彈的松阪肉片大火同炒。"] },
             { id: 69, category: "芽菜", name: "玉米苗", storage: "冷藏密封", desc: "玉米發芽後的金黃色幼苗。富含天然胡蘿蔔素與維生素，嚼後帶有天然玉米清甜。", recipes: ["精緻甜點擺盤：常用於法式甜點或高級排餐的頂部裝飾。"] },
@@ -363,8 +372,7 @@
         ];
 
         // ===================================================================================
-        // 【動態轉換與映射】將原始數據轉化為網頁實體
-        // 核心改變：image 改為讀取固定的 p.id！
+        // 【動態轉換與映射】將原始數據轉化為網頁實體，將圖片牢牢鎖定在固定 ID！
         // ===================================================================================
         const formattedProducts = rawProducts.map((p) => {
             const style = getCategoryStyle(p.category);
@@ -372,7 +380,7 @@
                 id: p.id,
                 name: p.name,
                 category: p.category,
-                image: `image/${p.id}.jpg`, // 完全綁定靜態 ID，不受任何排序與刪除影響
+                image: `image/${p.id}.jpg`, // 完全綁定靜態 ID，不受任何排序、刪除與新增的影響
                 emoji: style.icon,
                 color: style.grad,
                 categoryColor: style.colorClasses,
@@ -383,6 +391,8 @@
             };
         });
 
+        // 定義自訂的分類按鈕順序 (將乾貨排在菇類後面)
+        const CATEGORY_ORDER = ['全部', '菇類', '乾貨', '根菜/莖菜', '瓜菜/果菜', '葉菜/雜糧', '生菜', '芽菜', '加工品'];
         let currentCategory = 'all';
 
         window.onload = function() {
@@ -395,14 +405,19 @@
             const filtersContainer = document.getElementById('categoryFilters');
             filtersContainer.innerHTML = '';
             
-            const categories = ['全部', ...new Set(formattedProducts.map(p => p.category))];
+            // 找出當前有商品的品類
+            const existingCategories = [...new Set(formattedProducts.map(p => p.category))];
             
-            categories.forEach(cat => {
+            // 依照 CATEGORY_ORDER 順序渲染有商品的品類
+            const sortedCategories = CATEGORY_ORDER.filter(cat => cat === '全部' || existingCategories.includes(cat));
+            
+            sortedCategories.forEach(cat => {
                 const btn = document.createElement('button');
                 btn.id = `btn-${cat}`;
                 
                 const count = cat === '全部' ? formattedProducts.length : formattedProducts.filter(p => p.category === cat).length;
-                const icon = cat === '全部' ? '' : `${getCategoryStyle(cat).icon} `;
+                const style = getCategoryStyle(cat);
+                const icon = cat === '全部' ? '' : `${style.icon} `;
                 btn.innerText = `${icon}${cat} (${count})`;
                 
                 if (cat === 'all' || cat === '全部') {
